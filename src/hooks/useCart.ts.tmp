@@ -1,0 +1,20 @@
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import { Product } from "@/data/products";
+
+interface CartItem extends Product {
+  quantity: number;
+}
+
+interface CartStore {
+  items: CartItem[];
+  addItem: (product: Product) => void;
+  removeItem: (productId: string) => void;
+  updateQuantity: (productId: string, quantity: number) => void;
+  clearCart: () => void;
+  total: number;
+}
+
+// Since I cannot use external libraries easily if not in package.json, 
+// I'll check package.json for zustand. It is NOT there.
+// I will implement a custom hook using React state and Context.
